@@ -12,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 
 import com.fullteaching.backend.user.UserRepository;
+import com.fullteaching.backend.user.AuthProvider;
 import com.fullteaching.backend.user.User;
 import com.fullteaching.backend.course.CourseRepository;
 import com.fullteaching.backend.course.Course;
@@ -44,9 +45,9 @@ public class DatabaseInitializer implements CommandLineRunner {
 		
 		//Sample users
 		String defPicture = "/../assets/images/default_session_image.png";
-		User user1 = new User("student1@gmail.com", "pass", "Student Imprudent", defPicture, "ROLE_STUDENT");
-		User user2 = new User("student2@gmail.com", "pass", "Student Concludent", defPicture, "ROLE_STUDENT");
-		User user3 = new User("teacher@gmail.com",  "pass", "Teacher Cheater",  defPicture, "ROLE_TEACHER");
+		User user1 = new User("student1@gmail.com", "pass", "Student Imprudent", defPicture, AuthProvider.local, "ROLE_STUDENT");
+		User user2 = new User("student2@gmail.com", "pass", "Student Concludent", defPicture, AuthProvider.local, "ROLE_STUDENT");
+		User user3 = new User("teacher@gmail.com",  "pass", "Teacher Cheater",  defPicture, AuthProvider.local,"ROLE_TEACHER");
 		Set<User> setUsers = new HashSet<>();
 		setUsers.add(user1);
 		setUsers.add(user2);
@@ -63,7 +64,7 @@ public class DatabaseInitializer implements CommandLineRunner {
 		userRepository.save(user3);
 		
 		
-		User user4 = new User("student3@gmail.com", "pass", "New Student", defPicture, "ROLE_STUDENT");
+		User user4 = new User("student3@gmail.com", "pass", "New Student", defPicture, AuthProvider.local,"ROLE_STUDENT");
 		setUsers.add(user4);
 		listUsers.add(user4);
 		setUsers.add(user4);

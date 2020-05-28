@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,6 +36,9 @@ public class User {
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
+
+    @Enumerated(EnumType.STRING)
+    private AuthProvider provider;
 	
 	private String nickName;
 	
@@ -49,11 +54,12 @@ public class User {
 
 	public User() {}
 	
-	public User(String name, String password, String nickName, String picture, String... roles){
+	public User(String name, String password, String nickName, String picture, AuthProvider provider, String... roles){
 		this.name = name;
 		this.passwordHash = new BCryptPasswordEncoder().encode(password);
 		this.roles = new ArrayList<>(Arrays.asList(roles));
-		
+		this.provider = provider;
+
 		this.nickName = nickName;
 		if (picture != null && picture != "") {
 			this.picture = picture;
@@ -145,6 +151,14 @@ public class User {
 	@Override
 	public String toString() {
 		return this.nickName;
+	}
+
+	public AuthProvider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(AuthProvider provider) {
+		this.provider = provider;
 	}
 
 }

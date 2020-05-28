@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.Assert;
 
 import com.fullteaching.backend.AbstractUnitTest;
+import com.fullteaching.backend.user.AuthProvider;
 import com.fullteaching.backend.user.User;
 
 /**
@@ -40,7 +41,7 @@ public class UserUnitaryTest extends AbstractUnitTest {
 		Assert.notNull(emptyUser, "User failed to be created");
 		
 		//User with picture
-		User u = new User(name, password, nickName, picture,roles);
+		User u = new User(name, password, nickName, picture, AuthProvider.local, roles);
 		Assert.notNull(u, "User failed to be created");
 		Assert.isTrue(name.equals(u.getName()), "User failed to be created");
 		Assert.isTrue((new BCryptPasswordEncoder()).matches(password, u.getPasswordHash()), "User failed to be created");
@@ -49,7 +50,7 @@ public class UserUnitaryTest extends AbstractUnitTest {
 		Assert.isTrue(roles.length == u.getRoles().size(), "User failed to be created");
 		
 		//user witout picture
-		u = new User(name, password, nickName, null,roles);
+		u = new User(name, password, nickName, null, AuthProvider.local, roles);
 		Assert.notNull(u, "User failed to be created");
 		Assert.isTrue(name.equals(u.getName()), "User failed to be created");
 		Assert.isTrue((new BCryptPasswordEncoder()).matches(password, u.getPasswordHash()), "User failed to be created");
@@ -133,8 +134,8 @@ public class UserUnitaryTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void equalUserTest() {
-		User u1 = new User(name, password, nickName, picture,roles);
-		User u2 = new User(name, password, nickName, picture,roles);
+		User u1 = new User(name, password, nickName, picture, AuthProvider.local,roles);
+		User u2 = new User(name, password, nickName, picture, AuthProvider.local,roles);
 		Assert.isTrue(u1.equals(u2), "EqualUserTest FAIL");
 		Assert.isTrue(!u1.equals("not An User"), "EqualUserTest FAIL");
 		Assert.isTrue(u1.equals(u1), "EqualUserTest FAIL");		

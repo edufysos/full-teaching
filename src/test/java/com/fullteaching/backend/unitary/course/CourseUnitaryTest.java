@@ -7,6 +7,7 @@ import org.springframework.util.Assert;
 import com.fullteaching.backend.AbstractUnitTest;
 import com.fullteaching.backend.course.Course;
 import com.fullteaching.backend.coursedetails.CourseDetails;
+import com.fullteaching.backend.user.AuthProvider;
 import com.fullteaching.backend.user.User;
 
 public class CourseUnitaryTest extends AbstractUnitTest {
@@ -19,7 +20,7 @@ public class CourseUnitaryTest extends AbstractUnitTest {
 	@BeforeClass
 	public static void initialize() {
 		String [] roles = {"ROLE_TEACHER"};
-		teacher = new User("mock_teacher","mock2222","t_mocky", null,roles);
+		teacher = new User("mock_teacher","mock2222","t_mocky", null, AuthProvider.local,roles);
 	}
 
 	@Test

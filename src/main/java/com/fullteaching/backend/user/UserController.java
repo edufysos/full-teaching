@@ -26,6 +26,8 @@ import org.slf4j.LoggerFactory;
 import com.fullteaching.backend.user.UserRepository;
 import com.fullteaching.backend.user.UserComponent;
 import com.fullteaching.backend.security.AuthorizationService;
+import com.fullteaching.backend.security.CurrentUser;
+import com.fullteaching.backend.security.UserPrincipal;
 import com.fullteaching.backend.user.User;
 
 
@@ -67,7 +69,7 @@ public class UserController {
 					//If the email has a valid format
 					if (EmailValidator.getInstance().isValid(userData[0])){
 						log.info("Email, password and captcha are valid");
-						User newUser = new User(userData[0], userData[1], userData[2], "", "ROLE_STUDENT");
+						User newUser = new User(userData[0], userData[1], userData[2], "",AuthProvider.local , "ROLE_STUDENT");
 						userRepository.save(newUser);
 						log.info("User successfully signed up");
 						
@@ -180,4 +182,8 @@ public class UserController {
 		return successCaptchaResponse;
 	}
 
+	@RequestMapping(value = "/user/me", method = RequestMethod.PUT)
+	public User getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
+        return userRepository.findOne(userPrincipal.getId());
+    }
 }

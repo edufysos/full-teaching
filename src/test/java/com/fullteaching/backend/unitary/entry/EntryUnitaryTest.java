@@ -1,6 +1,5 @@
 package com.fullteaching.backend.unitary.entry;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +10,7 @@ import org.springframework.util.Assert;
 import com.fullteaching.backend.AbstractUnitTest;
 import com.fullteaching.backend.comment.Comment;
 import com.fullteaching.backend.entry.Entry;
+import com.fullteaching.backend.user.AuthProvider;
 import com.fullteaching.backend.user.User;
 
 public class EntryUnitaryTest extends AbstractUnitTest {
@@ -23,7 +23,7 @@ public class EntryUnitaryTest extends AbstractUnitTest {
 	@Test
 	public void newForumEntryTest() {
 		String[] roles = {"TEACHER"};
-		User u =  new User("mock", "Pass1234", "mock", null, roles);
+		User u =  new User("mock", "Pass1234", "mock", null, AuthProvider.local, roles);
 		long date = System.currentTimeMillis();
 		
 		Entry e2 = new Entry();
@@ -58,7 +58,7 @@ public class EntryUnitaryTest extends AbstractUnitTest {
 	public void setAndGetEntryUserTest() {
 		String[] roles = {"TEACHER"};
 
-		User u =  new User("mock", "Pass1234", "mock", null, roles);
+		User u =  new User("mock", "Pass1234", "mock", null, AuthProvider.local, roles);
 
 		Entry e = new Entry();
 		Assert.notNull(e);

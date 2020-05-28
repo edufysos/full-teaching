@@ -2,6 +2,7 @@ package com.fullteaching.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 
@@ -9,6 +10,8 @@ import com.fullteaching.backend.security.AuthorizationService;
 
 //ONLY ON PRODUCTION
 import org.springframework.beans.factory.annotation.Value;
+
+import com.AppProperties;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
@@ -16,6 +19,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 //ONLY ON PRODUCTION 
 
 @SpringBootApplication
+@EnableConfigurationProperties(AppProperties.class)
 @EnableWebSocket
 public class Application 
 {

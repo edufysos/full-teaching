@@ -1,6 +1,5 @@
 package com.fullteaching.backend.unitary.comment;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +9,7 @@ import org.springframework.util.Assert;
 
 import com.fullteaching.backend.AbstractUnitTest;
 import com.fullteaching.backend.comment.Comment;
+import com.fullteaching.backend.user.AuthProvider;
 import com.fullteaching.backend.user.User;
 
 public class CommentUnitaryTest extends AbstractUnitTest {
@@ -24,7 +24,7 @@ public class CommentUnitaryTest extends AbstractUnitTest {
 		Assert.notNull(cm);
 		
 		String[] roles = {"TEACHER"};
-		User u =  new User("mock", "Pass1234", "mock", null, roles);
+		User u =  new User("mock", "Pass1234", "mock", null, AuthProvider.local, roles);
 		Long date = System.currentTimeMillis();
 		String message = "This is the message";
 		Comment cm2 = new Comment(message, date, u);
@@ -67,7 +67,7 @@ public class CommentUnitaryTest extends AbstractUnitTest {
 	@Test
 	public void setAndGetCommentRepliesTest() {
 		String[] roles = {"TEACHER"};
-		User u =  new User("mock", "Pass1234", "mock", null, roles);
+		User u =  new User("mock", "Pass1234", "mock", null, AuthProvider.local, roles);
 		Long date = System.currentTimeMillis();
 		String message = "This is the message";
 		Comment rep = new Comment(message, date, u);
@@ -85,7 +85,7 @@ public class CommentUnitaryTest extends AbstractUnitTest {
 	@Test
 	public void setAndGetCommentUserTest() {
 		String[] roles = {"TEACHER"};
-		User u =  new User("mock", "Pass1234", "mock", null, roles);
+		User u =  new User("mock", "Pass1234", "mock", null, AuthProvider.local, roles);
 		
 		Comment cm = new Comment();
 		cm.setUser(u);
@@ -95,7 +95,7 @@ public class CommentUnitaryTest extends AbstractUnitTest {
 	@Test
 	public void setAndGetCommentParentTest() {
 		String[] roles = {"TEACHER"};
-		User u =  new User("mock", "Pass1234", "mock", null, roles);
+		User u =  new User("mock", "Pass1234", "mock", null, AuthProvider.local, roles);
 		Long date = System.currentTimeMillis();
 		String message = "This is the message";
 		Comment parent = new Comment(message, date, u);

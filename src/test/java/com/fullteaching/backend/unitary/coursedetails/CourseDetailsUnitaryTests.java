@@ -12,6 +12,7 @@ import com.fullteaching.backend.course.Course;
 import com.fullteaching.backend.coursedetails.CourseDetails;
 import com.fullteaching.backend.filegroup.FileGroup;
 import com.fullteaching.backend.forum.Forum;
+import com.fullteaching.backend.user.AuthProvider;
 import com.fullteaching.backend.user.User;
 
 public class CourseDetailsUnitaryTests extends AbstractUnitTest {
@@ -23,7 +24,7 @@ public class CourseDetailsUnitaryTests extends AbstractUnitTest {
 	@Test
 	public void newCourseDetailsTest() {
 		String[] roles = {"TEACHER"};
-		User u =  new User("mock", "Pass1234", "mock", null, roles);
+		User u =  new User("mock", "Pass1234", "mock", null, AuthProvider.local, roles);
 
 		CourseDetails cd = new CourseDetails();
 		Assert.notNull(cd);
@@ -67,7 +68,7 @@ public class CourseDetailsUnitaryTests extends AbstractUnitTest {
 	public void SetAndGetCourseDetailsCourseTest() {
 		CourseDetails cd = new CourseDetails();
 		String[] roles = {"TEACHER"};
-		User u =  new User("mock", "Pass1234", "mock", null, roles);
+		User u =  new User("mock", "Pass1234", "mock", null, AuthProvider.local, roles);
 
 		Course c = new Course("to modify", "/../assets/images/default_session_image.png", u);
 

@@ -8,6 +8,7 @@ import com.fullteaching.backend.AbstractUnitTest;
 import com.fullteaching.backend.course.Course;
 import com.fullteaching.backend.session.Session;
 import com.fullteaching.backend.utils.CourseTestUtils;
+import com.fullteaching.backend.user.AuthProvider;
 import com.fullteaching.backend.user.User;
 
 public class SessionUnitaryTest extends AbstractUnitTest {
@@ -35,7 +36,7 @@ public class SessionUnitaryTest extends AbstractUnitTest {
 		
 		//with course 
 		String[] roles = {"STUDENT"};
-		User u = new User("mock_teacher","mock2222","t_mocky", null,roles);
+		User u = new User("mock_teacher","mock2222","t_mocky", null, AuthProvider.local,roles);
 		Course c= CourseTestUtils.newCourseWithCd("course", u, null, "this is the info", false);
 		
 		Session c_session = new Session(title, description, date, c);
@@ -75,7 +76,7 @@ public class SessionUnitaryTest extends AbstractUnitTest {
 	@Test
 	public void setAndGetSessionCourseTest() {
 		String[] roles = {"STUDENT"};
-		User u = new User("mock_teacher","mock2222","t_mocky", null,roles);
+		User u = new User("mock_teacher","mock2222","t_mocky", null, AuthProvider.local,roles);
 		Course c= CourseTestUtils.newCourseWithCd("course", u, null, "this is the info", false);
 		
 		Session session = new Session();

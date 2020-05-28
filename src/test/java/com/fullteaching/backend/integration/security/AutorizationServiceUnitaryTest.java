@@ -28,7 +28,7 @@ public class AutorizationServiceUnitaryTest extends AbstractUnitTest {
 	public void setUp() throws Exception {
 		if(user.getLoggedUser()==null) {
 			String[] roles = {"STUDENT"};
-			User u = new User("TestUser", "Mock6666", "mock", null,roles);
+			User u = new User("TestUser", "Mock6666", "mock", null, null, roles);
 			user.setLoggedUser(u);
 		}	
 	}
@@ -60,7 +60,7 @@ public class AutorizationServiceUnitaryTest extends AbstractUnitTest {
 		String o ="Example object";
 		
 		String[] roles = {"STUDENT"};
-		User u = new User("FailUser", "Mock6666", "mock", null,roles);
+		User u = new User("FailUser", "Mock6666", "mock", null, null, roles);
 		
 		ResponseEntity <Object> r = service.checkAuthorization(null, u);
 		int status1 = r.getStatusCodeValue();
@@ -92,9 +92,9 @@ public class AutorizationServiceUnitaryTest extends AbstractUnitTest {
 		String[] roles = {"STUDENT"};
 		Collection<User> u = new ArrayList<User>();
 		
-		u.add(new User("user3", "Mock6666", "mock", null,roles));
-		u.add(new User("user1", "Mock6666", "mock", null,roles));
-		u.add(new User("user2", "Mock6666", "mock", null,roles));
+		u.add(new User("user3", "Mock6666", "mock", null, null, roles));
+		u.add(new User("user1", "Mock6666", "mock", null, null, roles));
+		u.add(new User("user2", "Mock6666", "mock", null, null, roles));
 				
 		ResponseEntity <Object> r = service.checkAuthorizationUsers(null, u);
 		int status1 = r.getStatusCodeValue();
